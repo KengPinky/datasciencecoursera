@@ -52,3 +52,6 @@ bothsets[["Activity"]] <- factor(bothsets[, Activity]
 bothsets[["SubNum"]] <- as.factor(bothsets[, SubNum])
 bothsets2 <- reshape2::melt(data = bothsets, id = c("SubNum", "Activity"))
 bothsets2 <- reshape2::dcast(data = bothsets2, SubNum + Activity ~ variable, fun.aggregate = mean)
+
+#create file for upload
+data.table::fwrite(x = bothsets2, file = "tidyData.txt", quote = FALSE, row.names = FALSE)
